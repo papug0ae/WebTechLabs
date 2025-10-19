@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрационная форма</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f2f2f2;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        input,
+        textarea,
+        select,
+        button {
+            background-color: #1f1f1f;
+            color: #f2f2f2;
+            border: 1px solid #3a3a3a;
+        }
+
+        form {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+
+
+        input,
+        textarea,
+        select,
+        button {
+            font: inherit;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            color: #f2f2f2;
+            background-color: #1f1f1f;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        input[type="file"]::file-selector-button {
+            background-color: #1f1f1f;
+            color: #f2f2f2;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 6px;
+        }
+
+        .birth-date-group {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        .birth-date-group input[type="text"] {
+            flex: 1;
+            width: auto;
+            margin-bottom: 0;
+        }
+
+        .birth-date-group button {
+            margin-bottom: 0;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Регистрационная форма</h1>
+    <form action="success.html" method="get">
+        <fieldset>
+            <legend>Основные данные</legend>
+            <p>
+                <label for="fullName">ФИО:</label>
+                <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="Иванов Иван Иванович"
+                        maxlength="50"
+                        pattern="^[A-Za-zА-Яа-яЁё\s'-]{2,50}$"
+                        title="Используйте буквы, пробелы, апостроф или дефис. Минимум 2 символа."
+                        required>
+            </p>
+            
+            
+
+            <p>
+                <label for="birthDate">Дата рождения:</label>
+                <span class="birth-date-group">
+                    <input
+                            type="text"
+                            id="birthDate"
+                            name="birthDate"
+                            placeholder="дд.мм.гггг"
+                            inputmode="numeric"
+                            maxlength="10"
+                            pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$"
+                            title="Введите дату в формате дд.мм.гггг."
+                            required
+                            autocomplete="bday"
+                            data-iso-value="">
+                    <button type="button" id="birthDatePickerButton" aria-label="Выбрать дату рождения">Выбрать дату</button>
+                </span>
+                <input type="date"
+                       id="birthDateNative"
+                       aria-hidden="true"
+                       tabindex="-1"
+                       style="position:absolute; opacity:0; width:0; height:0; border:0; padding:0; margin:0;">
+            </p>
+
+            <p>
+                <label for="country">Страна проживания:</label>
+                <select
+                        id="country"
+                        name="country"
+                        required
+                        title="Выберите страну проживания.">
+                    <option value="" disabled selected>Выберите страну</option>
+                    <option value="ru">Россия</option>
+                    <option value="by">Беларусь</option>
+                    <option value="kz">Казахстан</option>
+                    <option value="ua">Украина</option>
+                    <option value="other">Другая страна</option>
+                </select>
+            </p>
+
+            <p>
+                <span>Пол:</span><br>
+                <label>
+                    <input type="radio" name="gender" value="male" required>
+                    Мужской
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="female">
+                    Женский
+                </label>
+            </p>
+
+            <p>
+                <span>Являетесь ли вы студентом ПОЛИТЕХА?</span><br>
+                <label>
+                    <input type="radio" name="polytechStudent" value="yes" required>
+                    Да
+                </label>
+                <label>
+                    <input type="radio" name="polytechStudent" value="no">
+                    Нет
+                </label>
+            </p>
+
+            <p>
+                <label for="password">Пароль:</label>
+                <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Минимум 8 символов"
+                        minlength="8"
+                        maxlength="20"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"
+                        title="8–20 символов, минимум одна буква и одна цифра."
+                        required>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Контактная информация</legend>
+            <p>
+                <label for="email">Электронная почта:</label>
+                <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="ivanov@mail.ru"
+                        maxlength="64"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$"
+                        title="Формат: имя@домен.зона"
+                        required>
+            </p>
+            <p>
+                <label for="phone">Телефон:</label>
+                <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+7XXXXXXXXXX"
+                        maxlength="12"
+                        pattern="^\+7\d{10}$"
+                        title="Введите номер в формате +7XXXXXXXXXX."
+                        required>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Дополнительные сведения</legend>
+            <p>
+                <label for="bio">Причина регистрации:</label><br>
+                <textarea
+                        id="bio"
+                        name="bio"
+                        placeholder="Укажите причину регистрации"
+                        rows="4"
+                        minlength="20"
+                        maxlength="300"
+                        title="От 20 до 300 символов."
+                        required></textarea>
+            </p>
+            <p>
+                <label for="portfolio">Загрузите фото заявления:</label>
+                <input
+                        type="file"
+                        id="portfolio"
+                        name="portfolio"
+                        accept=".png,.jpg,.jpeg,.pdf"
+                        title="Выберите файл в формате PNG, JPG или PDF."
+                        required>
+            </p>
+        </fieldset>
+
+        <p>
+            <label>
+                <input type="checkbox"
+                       name="personalDataConsent"
+                       value="agreed"
+                       required
+                       title="Необходимо подтвердить согласие на обработку персональных данных.">
+                Согласен(а) на обработку персональных данных
+            </label>
+        </p>
+
+        <p>
+            <button type="submit">Зарегистрироваться</button>
+            <button type="reset">Очистить форму</button>
+        </p>
+    </form>
+
+    <script>
+        (function () {
+            const form = document.querySelector('form');
+            const displayInput = document.getElementById('birthDate');
+            const nativeInput = document.getElementById('birthDateNative');
+            const openButton = document.getElementById('birthDatePickerButton');
+    
+            if (displayInput) {
+                displayInput.addEventListener('input', function () {
+                    maskBirthDateInput(displayInput);
+                });
+                displayInput.addEventListener('blur', function () {
+                    applyBirthDatePattern(displayInput);
+                });
+            }
+    
+            if (openButton && nativeInput) {
+                openButton.addEventListener('click', function () {
+                    openDatePicker(displayInput, nativeInput);
+                });
+            }
+    
+            if (displayInput && nativeInput) {
+                displayInput.addEventListener('focus', function () {
+                    openDatePicker(displayInput, nativeInput);
+                });
+                displayInput.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openDatePicker(displayInput, nativeInput);
+                    }
+                });
+            }
+    
+            if (nativeInput) {
+                nativeInput.addEventListener('change', function () {
+                    syncFromPicker(displayInput, nativeInput);
+                });
+            }
+    
+            if (form) {
+                form.addEventListener('reset', function () {
+                    resetBirthDate(displayInput, nativeInput);
+                });
+            }
+        })();
+    
+        function openDatePicker(displayInput, nativeInput) {
+            if (!nativeInput) {
+                return;
+            }
+            const isoValue = displayInput && displayInput.dataset ? displayInput.dataset.isoValue || '' : '';
+            if (displayInput && displayInput.dataset) {
+                nativeInput.value = isoValue;
+            }
+            if (typeof nativeInput.showPicker === 'function') {
+                nativeInput.showPicker();
+            } else {
+                nativeInput.focus();
+                nativeInput.click();
+            }
+        }
+    
+        function syncFromPicker(displayInput, nativeInput) {
+            if (!displayInput || !nativeInput || !nativeInput.value) {
+                return;
+            }
+            const parts = nativeInput.value.split('-');
+            if (parts.length !== 3) {
+                return;
+            }
+            const [year, month, day] = parts;
+            displayInput.value = `${day}.${month}.${year}`;
+            displayInput.dataset.isoValue = nativeInput.value;
+        }
+    
+        function maskBirthDateInput(input) {
+            if (!input) {
+                return;
+            }
+            const digits = input.value.replace(/\D/g, '').slice(0, 8);
+            const day = digits.slice(0, Math.min(2, digits.length));
+            const month = digits.length > 2 ? digits.slice(2, Math.min(4, digits.length)) : '';
+            const year = digits.length > 4 ? digits.slice(4, 8) : '';
+    
+            let formatted = day;
+            if (month) {
+                formatted += '.' + month;
+            }
+            if (year) {
+                formatted += '.' + year;
+            }
+    
+            input.value = formatted;
+    
+            if (day.length === 2 && month.length === 2 && year.length === 4) {
+                input.dataset.isoValue = `${year}-${month}-${day}`;
+            } else {
+                input.dataset.isoValue = '';
+            }
+        }
+    
+        function applyBirthDatePattern(input) {
+            if (!input) {
+                return;
+            }
+            const match = input.value.match(/^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/);
+            if (match) {
+                const [day, month, year] = match[0].split('.');
+                input.dataset.isoValue = `${year}-${month}-${day}`;
+            } else {
+                input.dataset.isoValue = '';
+            }
+        }
+    
+        function resetBirthDate(displayInput, nativeInput) {
+            if (displayInput) {
+                displayInput.value = '';
+                if (displayInput.dataset) {
+                    displayInput.dataset.isoValue = '';
+                }
+            }
+            if (nativeInput) {
+                nativeInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
