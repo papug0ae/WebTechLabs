@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            color: #315679;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 1rem 6rem;
+        }
+
+        header h1 {
+            margin: 0 0 1rem;
+            font-size: 2.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 42rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0;
+            padding: 0.5rem 1rem;
+            background-color: rgba(25, 64, 100, 0.95);
+            backdrop-filter: blur(8px);
+            list-style: none;
+        }
+
+        .menu > li {
+            position: relative;
+            min-width: 9rem;
+            text-align: center;
+        }
+
+        .menu > li > a {
+            display: block;
+            padding: 0.9rem 1.5rem;
+            text-decoration: none;
+            color: #f0f4f8;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            border-radius: 0.6rem;
+        }
+
+        .menu > li:hover > a {
+            background-color: #829ab1;
+            color: #102a43;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 12rem;
+            margin: 0;
+            padding: 0.5rem 0;
+            list-style: none;
+            background-color: #486581;
+            border-radius: 0.6rem;
+            box-shadow: 0 12px 24px rgba(16, 42, 67, 0.25);
+        }
+
+        .submenu li {
+            position: relative;
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            text-decoration: none;
+            color: #f0f4f8;
+        }
+
+        .submenu li a:hover {
+            background-color: rgba(240, 244, 248, 0.16);
+        }
+
+        .sub-submenu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            min-width: 12rem;
+            margin: 0;
+            padding: 0.5rem 0;
+            list-style: none;
+            background-color: #334e68;
+            border-radius: 0.6rem;
+            box-shadow: 0 12px 24px rgba(16, 42, 67, 0.2);
+        }
+
+        .sub-submenu li a {
+            padding: 0.75rem 1.25rem;
+            color: #f0f4f8;
+        }
+
+        .sub-submenu li a:hover {
+            background-color: rgba(240, 244, 248, 0.16);
+        }
+
+        .menu > li:hover .submenu {
+            display: block;
+        }
+
+        .submenu li:hover .sub-submenu {
+            display: block;
+        }
+
+        main {
+            max-width: 960px;
+            margin: 3rem auto;
+            padding: 0 1.5rem 4rem;
+            display: grid;
+            gap: 2rem;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 18px 36px rgba(16, 42, 67, 0.12);
+        }
+
+        section h3 {
+            margin: 1.25rem 0 0.5rem;
+            font-size: 1.2rem;
+            color: #486581;
+        }
+
+        section p {
+            margin: 0.75rem 0 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem 5rem;
+            }
+
+            header h1 {
+                font-size: 2.1rem;
+            }
+
+            .menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .menu > li {
+                width: 100%;
+            }
+
+            .menu > li > a {
+                width: 100%;
+                border-radius: 0.8rem;
+            }
+
+            .submenu {
+                position: static;
+                transform: none;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .submenu li a {
+                padding-left: 1.25rem;
+            }
+
+            .sub-submenu {
+                position: static;
+                width: 100%;
+                margin-top: 0.5rem;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li>
+                <a href="#design">Design</a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#design-branding">Branding +</a>
+                        <ul class="sub-submenu">
+                            <li><a href="#design-branding-style">Style Guides</a></li>
+                            <li><a href="#design-branding-assets">Asset Kit</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#design-ui">UI/UX</a></li>
+                    <li><a href="#design-illustration">Illustration</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#development">Development</a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#dev-front">Frontend +</a>
+                        <ul class="sub-submenu">
+                            <li><a href="#dev-front-components">Components</a></li>
+                            <li><a href="#dev-front-testing">Testing</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#dev-back">Backend</a></li>
+                    <li><a href="#dev-mobile">Mobile</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#marketing">Marketing</a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#market-strategy">Strategy +</a>
+                        <ul class="sub-submenu">
+                            <li><a href="#market-strategy-research">Research</a></li>
+                            <li><a href="#market-strategy-roadmap">Roadmap</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#market-content">Content</a></li>
+                    <li><a href="#market-analytics">Analytics</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
